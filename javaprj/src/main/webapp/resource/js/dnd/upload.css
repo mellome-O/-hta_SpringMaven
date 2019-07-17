@@ -1,0 +1,49 @@
+.d-none{
+    display: none;
+}
+
+#upload{
+
+}
+
+
+#upload .box{
+    display: flex;
+
+    box-sizing: border-box;
+    width: 900px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid gray;
+}
+
+#upload .drop-zone{
+    width: 600px;
+    height: 100%;
+    border-right: 1px solid gray;
+    background: lightblue;
+}
+
+#upload .drop-zone .trigerButton{
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	height: 50%;
+	background: red;
+	border-radius: 20px;
+	
+	color: white;
+	line-height: 100%;
+	cursor: pointer;
+}
+#upload .drop-zone.valide{
+    background: lightgreen;
+}
+#upload .drop-zone.invalide{
+    background: red;
+   
+}
+#upload .file-list{
+    background: lightsalmon;
+}

@@ -82,7 +82,7 @@
 
 
 							<tbody>
-								<c:forEach var="n" items="${list}">
+								<c:forEach var="n" items="${noticelist}">
 									<c:if test="${param.eid == n.id}">
 										<tr>
 											<td class="num">${n.id}</td>

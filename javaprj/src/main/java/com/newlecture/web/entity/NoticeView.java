@@ -1,8 +1,6 @@
-package com.newlecture.web.dao.oracle;
+package com.newlecture.web.entity;
 
 import java.util.Date;
-
-import com.newlecture.web.entity.Notice;
 
 public class NoticeView extends Notice{
 	private int commentCount;
@@ -14,8 +12,9 @@ public class NoticeView extends Notice{
 	}
 
 
-
-
+	public NoticeView() {
+	
+	}
 
 	public int getCommentCount() {
 		return commentCount;
