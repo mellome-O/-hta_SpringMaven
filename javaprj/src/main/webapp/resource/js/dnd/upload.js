@@ -4,6 +4,12 @@ window.addEventListener("load", function(){
     var trigerButton = section. querySelector(".trigerButton");
     var file = section.querySelector("input[type=file]");
     var percentSpan = section.querySelector(".percent");
+    var progressDiv = dropZone.querySelector(".progress")
+    
+    //progress
+   
+    
+    
     //트리거 버튼
     trigerButton.onclick = function(e){
     	alert("aa");
@@ -85,10 +91,20 @@ window.addEventListener("load", function(){
         });
         
         //이벤트를 함수가 바인딩 할 때 사용하는 녀석
+        //진척도 %
         request.upload.addEventListener("progress", function(e){
         	//loaded, total
-        	console.log(Math.round(e.loaded * 100 / e.total));
-        	percentSpan.innerText = Math.round(e.loaded * 100 / e.total);
+        	//console.log(Math.round(e.loaded * 100 / e.total));
+        	
+        //if(e.lengthComputable){
+        	var degree = Math.round(e.loaded * 100 / e.total);
+        	percentSpan.innerText = degree;
+        	progressDiv.style.width = degree + "%";
+        //}
+       // else
+       // 	progressBoxDiv.innerText="전송크기를 계산할 수 없습니다.";
+        
+        
         });
         	
         request.open("POST", "../../../upload");

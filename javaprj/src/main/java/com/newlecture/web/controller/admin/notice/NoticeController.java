@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,15 +30,12 @@ import com.newlecture.web.entity.NoticeView;
 @Controller("adminNoticeController")
 @RequestMapping("/admin/notice/")
 public class NoticeController{
+
+	@Autowired
+	//@Qualifier("mybatisNoticeDao")
 	private NoticeDao noticeDao;
-	private SqlSessionTemplate sqlSession;
 	
-	@Autowired()
-	public void setSqlSession(SqlSessionTemplate sqlSession) {
-		this.sqlSession = sqlSession;
-	}
-	
-	@RequestMapping("list")
+	@RequestMapping("list1")
 	public String list(Model model) throws ClassNotFoundException, SQLException {
 		
 		//1.세션 도구를 생성해서
@@ -49,18 +47,14 @@ public class NoticeController{
 		//여기서는 그냥 그 세션 도구를 얻어서 호출하는 방법
 		
 		//1번 세션객체 로 호출하는 방법 둘 중 하나
-		//List<NoticeView> list = sqlSession.getMapper(NoticeDao.class).getList();
-		
-//		//2번 
-		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		//List<NoticeView> list = sqlSession.getMapper(NoticeDao.class).getList();		
+		//2번 
+		//NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
 		List<NoticeView> list = noticeDao.getList();
-		
 		model.addAttribute("list", list);
 
-		return "admin/notice/list";
+		return "admin/notice/list1";
 	}
-	
-	
 	
 //	@RequestMapping("list")
 //	public String list(Model model
@@ -81,7 +75,6 @@ public class NoticeController{
 		return "admin/notice/reg";
 	}
 	
-	
 	//setter있는 애들만, 일치하는 애들만 가져올 수 있음
 	//POST요청
 	@PostMapping("reg")
@@ -89,7 +82,7 @@ public class NoticeController{
 	public String reg(Notice notice
 			, String category
 			, MultipartFile file
-			, HttpServletRequest request) throws IOException {
+			, HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
 		System.out.println("category:" + category);
 		System.out.println("file:" + file);
 		System.out.println(notice.getTitle());
@@ -161,23 +154,12 @@ public class NoticeController{
 	      fis.close();
 	      fos.close();	
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		noticeDao.insert(notice); //이렇게하면 우리가 정했던 title과 content만 가져오겠지
+		notice.setWriterId("newlec");
 		
 		
 		
 
-		
 		
 //		public String reg(Notice notice, String category, String file
 //				,@RequestParam("content-type") String contentType) {
@@ -186,7 +168,7 @@ public class NoticeController{
 		//1.파일업로드 위한 설정
 		
 		//리디렉션:list페이지로
-		return "redirect:list";
+		return "redirect:list1";
 		//뷰로인식 포워딩:
 		//return "admin/notice/reg";
 		

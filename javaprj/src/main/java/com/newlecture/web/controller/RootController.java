@@ -19,6 +19,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/")
 public class RootController {
+	
+	//업로드 한 파일 목록  데이터가져오기
+	
+	
+	
+	
 	@PostMapping("upload")
 	@ResponseBody
 	public String upload(MultipartFile file, HttpServletRequest request) throws IOException {
@@ -88,15 +94,16 @@ public class RootController {
 	      fis.close();
 	      fos.close();	
 		
-		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("파일업로드 완료됐다!");	
-		return "파일업로드 완료됐다!";
+	      return "ok";
+//		
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("파일업로드 완료됐다!");	
+//		return "파일업로드 완료됐다!";
 	}
 	
 //	@RequestMapping("index") //이것을호출해주는녀석:프론트컨트롤러
