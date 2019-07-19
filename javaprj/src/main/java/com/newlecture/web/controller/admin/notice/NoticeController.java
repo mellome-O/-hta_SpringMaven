@@ -35,6 +35,15 @@ public class NoticeController{
 	//@Qualifier("mybatisNoticeDao")
 	private NoticeDao noticeDao;
 	
+	@GetMapping("detail")
+	public String detail(Integer id, Model model) throws ClassNotFoundException, SQLException {
+		
+		Notice notice = noticeDao.get(id);
+		model.addAttribute("notice", notice);
+		return "admin/notice/detail";
+	}
+	
+	
 	@RequestMapping("list1")
 	public String list(Model model) throws ClassNotFoundException, SQLException {
 		

@@ -58,13 +58,13 @@ public class MyBatisNoticeDao implements NoticeDao{
 		//이런식으로 라이브러리처럼 직접 SQL문 쓸 수 있다
 		//우리는 DAO만들었으니까 1번방법으로! 
 		
-		
 	}
 
 	@Override
 	public Notice get(int id) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		return noticeDao.get(id);
 	}
 
 	@Override

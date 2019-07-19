@@ -1,4 +1,4 @@
-<%@page import="com.newlecture.web.dao.file.FileNoticeDao"%>
+
 <%@page import="com.newlecture.web.dao.NoticeDao"%>
 <%@page import="java.util.Scanner"%>
 <%@page import="java.io.FileInputStream"%>

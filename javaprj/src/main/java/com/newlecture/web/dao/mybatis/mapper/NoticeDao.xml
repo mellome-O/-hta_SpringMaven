@@ -3,19 +3,31 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newlecture.web.dao.NoticeDao">
+
+	
 	<select id="get" resultType="com.newlecture.web.entity.Notice">
-		SELECT * from NOTICE WHERE id=1
-	</select>
-     <select id="getList" resultType="com.newlecture.web.entity.NoticeView">
-		
+		SELECT * from NOTICE WHERE id = #{id}
+	</select> 
+	
+    <select id="getList" resultType="com.newlecture.web.entity.NoticeView">
 		SELECT * FROM NOTICE_VIEW 
 		WHERE ${param2} LIKE '%${param3}%' 
-		<!-- AND NUM BETWEEN -->  <!-- 1+(#{param1}-1)*10 AND #{param1}*10  -->
-	</select>
+		<!-- 실행중에 요청에따라 쿼리가 달라지는 것  : 동적쿼리 다이나믹쿼리 -->
+		<if test="">
+		AND NUM BETWEEN 1+(#{param1}-1)*10 AND #{param1}*10 
+		</if>
+	</select> 
 	
 	<!-- 인터페이스에 있는 메소드명을 id에 넣어주기 -->
-	<insert id="insert" parameterType="com.newlecture.web.entity.Notice">
+ 	<insert id="insert" parameterType="com.newlecture.web.entity.Notice">
+		<selectKey keyProperty="id" resultType="Integer">
+		select nvl(id,0)+1 id from (select * from notice order by regdate desc) where rownum = 1;
+		</selectKey>
 		INSERT INTO NOTICE(ID,TITLE,CONTENT,WRITER_ID)
 		VALUES(NOTICE_SEQ.NEXTVAL,#{title},#{content},#{writerId})
 	</insert>
+	
+	<update id="update" parameterType="com.newlecture.web.entity.Notice">
+		
+	</update>
 </mapper>

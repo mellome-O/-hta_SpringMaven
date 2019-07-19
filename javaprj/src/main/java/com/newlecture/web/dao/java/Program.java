@@ -1,12 +1,14 @@
 package com.newlecture.web.dao.java;
 
+import java.lang.reflect.InvocationTargetException;
+
 import com.newlecture.web.entity.File;
 
 //import java.io.File; 두 개의 클래스 파일명 구별하기 위해 하나의 파일에 풀네임 붙여주기
 
 public class Program {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, NoSuchMethodException, SecurityException, InvocationTargetException {
 		//경로 정하기 C:\tools
 		java.io.File directory = new java.io.File("C:\\tools");
 		
@@ -20,7 +22,9 @@ public class Program {
 		for(int i=0; i<files.length; i++) {
 			File fs = new File(files[i]);
 			System.out.println(fs.toString());
+			System.out.println(fs.toJSON());
 		}
+		
 	}
 
 }
