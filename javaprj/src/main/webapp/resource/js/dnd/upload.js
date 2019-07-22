@@ -4,7 +4,8 @@ window.addEventListener("load", function(){
     var trigerButton = section. querySelector(".trigerButton");
     var file = section.querySelector("input[type=file]");
     var percentSpan = section.querySelector(".percent");
-    var progressDiv = dropZone.querySelector(".progress")
+    var progressDiv = dropZone.querySelector(".progress");
+    var filelistLi = section.querySelector(".file-list li");
     
     //progress
    
@@ -59,12 +60,12 @@ window.addEventListener("load", function(){
         // console.log("드랍?");
         
          var files = e.dataTransfer.files;
-        // var size = files.length;
+        var size = files.length;
 
-        // if(size>1){
-        //     alert("파일은 하나씩만 업로드 할 수 있습니다.");
-        //     return;
-        // }
+         if(size>1){
+             alert("파일은 하나씩만 업로드 할 수 있습니다.");
+             return;
+         }
          var file = files[0];
         // console.log(file.type); //파일종류
 
@@ -75,10 +76,10 @@ window.addEventListener("load", function(){
         //     return;
         // }
 
-        // if(file.size>9*1024*1024){
-        //     alert("10메가 이상의 파일은 업로드 할 수 없습니다.");
-        //     return;
-        // }
+         if(file.size>9*1024*1024){
+             alert("10메가 이상의 파일은 업로드 할 수 없습니다.");
+             return;
+         }
         
         //멀티파트 -->FormData
         var formData = new FormData();
@@ -86,8 +87,23 @@ window.addEventListener("load", function(){
         
         var request = new XMLHttpRequest();
         request.addEventListener("load", function(e){
-        	alert(request.responseText);
         	
+        	if(request.responseText == "ok"){
+        		//목록을 새로 요청하기 //변수명 밖에꺼랑 안에꺼 충돌안나게 다른이름으로 설정하기
+        		var req = new XMLHttpRequest();
+        		alert("드렁");
+        		req.addEventListener("load", function(e){
+        			console.log(req.responseText);
+        			console.log(typeof req.responseText);
+        
+        			var json = JSON.parse(req.responseText);
+        			var size = json.length;
+        			alert(json.length);
+        			filelistLi.innerText = json[0].name;
+        		});
+        		req.open("GET","/javaprj/file-list");
+        		req.send();
+        	}
         });
         
         //이벤트를 함수가 바인딩 할 때 사용하는 녀석

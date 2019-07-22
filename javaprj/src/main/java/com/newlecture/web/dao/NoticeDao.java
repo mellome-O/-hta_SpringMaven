@@ -17,14 +17,14 @@ public interface NoticeDao {
 	
 	List<NoticeView> getList() throws ClassNotFoundException, SQLException;
 	
-	List<NoticeView> getList(int page) throws ClassNotFoundException, SQLException;
+	List<NoticeView> getList(Integer page) throws ClassNotFoundException, SQLException;
 	
 	/*
 	 * @Select("SELECT * FROM NOTICE_VIEW \r\n" +
 	 * "WHERE ${field} LIKE '%${query}%' ")
 	 */
-	List<NoticeView> getList(int page, String field, String query) throws ClassNotFoundException, SQLException;
-	
+	List<NoticeView> getList(Integer page, @Param("field")String field, String query) throws ClassNotFoundException, SQLException;
+
 	/* @Select("SELECT * from NOTICE WHERE id = #{id}") */
 	Notice get(int id) throws ClassNotFoundException, SQLException;
 	

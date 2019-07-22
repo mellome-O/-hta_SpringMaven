@@ -15,6 +15,7 @@
 		
 		<!-- <context:component-scan base-package="com.newlecture.web.dao.oracle"/> -->
 		<context:component-scan base-package="com.newlecture.web.dao.mybatis"/> 
+		<context:component-scan base-package="com.newlecture.web.dao.java"/> 
 		<!-- jdbc:oracle:thin:@192.168.0.15:1521/xepdb1
 		"\"newlec\"", "l4class" -->
 		

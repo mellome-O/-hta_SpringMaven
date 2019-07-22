@@ -3,17 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newlecture.web.dao.NoticeDao">
-
+	<resultMap type="com.newlecture.web.entity.Notice" id="noticeMap">
+		<!-- <result column="id" property="id" jdbcType="NUMERIC" javaType="Integer"/>
+		<result column="title" property="title" jdbcType="NVARCHAR" javaType="String"/>
+		<result column="content" property="content" jdbcType="CLOB" javaType="String"/> -->
+		<result column="writer_id" property="writerId" jdbcType="VARCHAR" javaType="String"/>
+		<!-- <result column="regdate" property="regDate" jdbcType="TIMESTAMP" javaType="Date"/>
+		<result column="hit" property="hit" jdbcType="NUMERIC" javaType="Integer"/> -->
+	</resultMap>
 	
-	<select id="get" resultType="com.newlecture.web.entity.Notice">
+	<select id="get" resultMap="noticeMap">
 		SELECT * from NOTICE WHERE id = #{id}
 	</select> 
 	
-    <select id="getList" resultType="com.newlecture.web.entity.NoticeView">
+    <select id="getList" resultMap="noticeMap">
+<!-- 	<select id="getList" resultType="com.newlecture.web.entity.NoticeView"> -->
 		SELECT * FROM NOTICE_VIEW 
-		WHERE ${param2} LIKE '%${param3}%' 
+		WHERE ${field} LIKE '%${param3}%' 
 		<!-- 실행중에 요청에따라 쿼리가 달라지는 것  : 동적쿼리 다이나믹쿼리 -->
-		<if test="">
+		<if test="param1 != null">
 		AND NUM BETWEEN 1+(#{param1}-1)*10 AND #{param1}*10 
 		</if>
 	</select> 
@@ -28,6 +36,13 @@
 	</insert>
 	
 	<update id="update" parameterType="com.newlecture.web.entity.Notice">
-		
+		UPDATE NOTICE 
+		SET 
+			title=#{title}, 
+			content=#{content}, 
+			writer_id=#{writerId}, 
+			hit=#{hit}, 
+			regdate=#{regDate} 
+			WHERE ID =${id}
 	</update>
 </mapper>

@@ -34,22 +34,22 @@ public class MyBatisNoticeDao implements NoticeDao{
 	@Override
 	public List<NoticeView> getList() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		return getList(1,"title","");
+		return getList(null,"title","");
 		//return null;
 	}
 
 	@Override
-	public List<NoticeView> getList(int page) throws ClassNotFoundException, SQLException {
+	public List<NoticeView> getList(Integer page) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return getList(page,"title","");
 		//return null;
 	}
 
 	@Override
-	public List<NoticeView> getList(int page, String field, String query) throws ClassNotFoundException, SQLException {
+	public List<NoticeView> getList(Integer page, String field, String query) throws ClassNotFoundException, SQLException {
 		//1번방법-Dao를 직접 가져다 쓰기
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
-		return noticeDao.getList();
+		return noticeDao.getList(page,"title","");
 		//진보된 방식
 		//sql문을 매퍼에 구현해서 
 		//인터페이스로 다오에서 가져다쓰기
@@ -91,8 +91,9 @@ public class MyBatisNoticeDao implements NoticeDao{
 
 	@Override
 	public int update(Notice notice) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		
+		return noticeDao.update(notice);
 	}
 
 	@Override

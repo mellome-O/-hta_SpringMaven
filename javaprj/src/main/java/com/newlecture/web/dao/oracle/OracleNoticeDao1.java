@@ -16,22 +16,22 @@ import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.entity.NoticeView;
 //@Repository
-public class OracleNoticeDao implements NoticeDao {
+public class OracleNoticeDao1 implements NoticeDao {
 
 	@Override
 	public List<NoticeView> getList() throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
-		return getList(1,"title","");
+		return getList(null,"title","");
 	}
 
 	@Override
-	public List<NoticeView> getList(int page) throws ClassNotFoundException, SQLException {
+	public List<NoticeView> getList(Integer page) throws ClassNotFoundException, SQLException {
 		// TODO Auto-generated method stub
 		return getList(page,"title","");
 	}
 
 	@Override
-	public List<NoticeView> getList(int page, String field, String query) throws ClassNotFoundException, SQLException {
+	public List<NoticeView> getList(Integer page, String field, String query) throws ClassNotFoundException, SQLException {
 		List<NoticeView> list = new ArrayList<>();
 		
 		int pageSize = 10;

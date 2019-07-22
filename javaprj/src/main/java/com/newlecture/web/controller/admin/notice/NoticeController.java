@@ -30,10 +30,30 @@ import com.newlecture.web.entity.NoticeView;
 @Controller("adminNoticeController")
 @RequestMapping("/admin/notice/")
 public class NoticeController{
-
+	
 	@Autowired
 	//@Qualifier("mybatisNoticeDao")
 	private NoticeDao noticeDao;
+	
+	@GetMapping("edit")
+	public String edit(Integer id, Model model) throws ClassNotFoundException, SQLException {
+	
+		model.addAttribute("notice", noticeDao.get(id));
+		return "admin/notice/edit";
+	}
+	@PostMapping("edit")
+	public String edit(Notice notice) throws ClassNotFoundException, SQLException {
+
+		//트랜잭션 처리
+		Notice n = noticeDao.get(notice.getId());
+		n.setTitle(notice.getTitle());
+		n.setContent(notice.getContent());
+		
+		
+		noticeDao.update(n);
+		return "redirect:detail?id="+notice.getId();
+	}
+
 	
 	@GetMapping("detail")
 	public String detail(Integer id, Model model) throws ClassNotFoundException, SQLException {

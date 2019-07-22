@@ -16,12 +16,12 @@ public class Program {
 		java.io.File[] files = directory.listFiles();
 		
 		File f1 = new File(files[0]);
-		System.out.println(f1.toString());
-		System.out.println(files.length);
+		//System.out.println(f1.toString());
+		//System.out.println(files.length);
 		
 		for(int i=0; i<files.length; i++) {
 			File fs = new File(files[i]);
-			System.out.println(fs.toString());
+			//System.out.println(fs.toString());
 			System.out.println(fs.toJSON());
 		}
 		
