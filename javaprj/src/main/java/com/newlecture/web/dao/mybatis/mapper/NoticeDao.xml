@@ -45,4 +45,8 @@
 			regdate=#{regDate} 
 			WHERE ID =${id}
 	</update>
+	
+	<delete id ="delete">
+		delete NOTICE WHERE ID=#{id}
+	</delete>
 </mapper>

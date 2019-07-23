@@ -31,8 +31,8 @@ public class NoticeController {
 		List<NoticeView> list = noticeDao.getList(page);
 		model.addAttribute("noticelist", list);
 		
-		return "/notice/list";
-	
+		//return "/notice/list";
+		return "list";//타일즈 사용해서 구현하기
 	
 	
 	

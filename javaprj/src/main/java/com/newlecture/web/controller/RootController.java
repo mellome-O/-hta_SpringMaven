@@ -153,11 +153,12 @@ public class RootController {
 //		return "index";
 //	}
 
-//	@RequestMapping("index")
-//	@ResponseBody
-//	public String index() {
-//		return "환영합니다.";
-//	}
+	@RequestMapping("index")
+	//@ResponseBody
+	public String index() {
+		//return "환영합니다.";
+		return "root.index";
+	}
 	
 //2번방법	
 	//@RequestMapping("index")

@@ -60,7 +60,8 @@ public class NoticeController{
 		
 		Notice notice = noticeDao.get(id);
 		model.addAttribute("notice", notice);
-		return "admin/notice/detail";
+		//return "admin/notice/detail";
+		return "admin.notice.detail";
 	}
 	
 	
@@ -82,7 +83,8 @@ public class NoticeController{
 		List<NoticeView> list = noticeDao.getList();
 		model.addAttribute("list", list);
 
-		return "admin/notice/list1";
+		//return "admin/notice/list1"; //jsp 페이지를 찾기위한 url정보
+		return "admin.notice.list1"; //tiles에게 페이지 조립을 부탁하기 위한 매핑이름
 	}
 	
 //	@RequestMapping("list")

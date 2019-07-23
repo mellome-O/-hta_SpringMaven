@@ -105,7 +105,6 @@ window.addEventListener("load", function(){
         		req.send();
         	}
         });
-        
         //이벤트를 함수가 바인딩 할 때 사용하는 녀석
         //진척도 %
         request.upload.addEventListener("progress", function(e){
