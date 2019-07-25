@@ -6,8 +6,7 @@
 <html lang="en" style="font-size: 10px">
 <!-- web-inf 디렉토리에 넣으면 사용자가 view를 바로 호출할 수 없다 -->
 
-			<main>
-
+		<main>
 			<section>
 				<h1>공지사항</h1>
 				
@@ -22,7 +21,8 @@
 
 				<section>
 					<!-- <form action="reg" method="post"> -->
-					<form action="reg" method="post" enctype="multipart/form-data"> 
+					<form action="reg?${_csrf.parameterName}=${_csrf.token}" 
+					method="post" enctype="multipart/form-data"> 
 			
 					<!-- <form action="reg" method="post" enctype="application/x-www-form-urlencoded"> -->
 					// key와 값이 함께 키가 곧 값이되고 값이 곧 키가되는 방식으로 전달되는 것
@@ -58,6 +58,7 @@
 						</table>
 
 						<div>
+							<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
 							<input type="submit" value="저장"> <a href="list">취소</a>
 						</div>
 

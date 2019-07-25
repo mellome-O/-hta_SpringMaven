@@ -39,13 +39,13 @@
    		</mvc:annotation-driven>
    		
   <!-- 타일즈 설정 -->
-   <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+   <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
        <property name="definitions"  value="/WEB-INF/tiles.xml"/>
        
     </bean> 
    <!--  타일즈뷰리졸버 : url 사용자 요청이 오면 지시서에 따라 뷰를 찾아준다/컨트롤러에서 return되는 페이지 
    	 지시서에 없는 리스트라면InternalResourceViewResolver가 바톤받아서 일함 -->
-    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+    <bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
        <property name="viewClass"  value="org.springframework.web.servlet.view.tiles3.TilesView"/>       
     </bean> 
       		
@@ -59,7 +59,7 @@
    <bean id="multipartResolver"
       class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
        <!-- setting maximum upload size -->
-      <property name="maxUploadSize" value="314572800" />       
+      <property name="maxUploadSize" value="3145728000" />       
    </bean>		
  		
  

@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<%=request.getContextPath() %>
+<c:set var="ctxName" value="${pageContext.request.contextPath}" />
+${ctxName}/test
+<%-- <c:url var="io" value="/logout" />
+	<div>
+		${io}
+	</div> --%>
 	<header id="header">
 		<div class="content-box">
 
@@ -30,14 +37,32 @@
 					<ul>
 						<li><a href="">HOME</a></li>
 						<li>
-							<c:if test="${id != null}">
+						
+						<security:authorize access="hasRole('ADMIN')">
+						관리자만 볼 수 있는 내용
+						</security:authorize>
+						
+						<security:authorize access="isAuthenticated()">
+							<a href="${ctxName}/logout">로그아웃</a>
+							<form action="${ctxName}/member/logout" method="post">
+								<input type="submit" value="로그아웃">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							</form>
+						</security:authorize>
+							
+						<security:authorize access="isAnonymous()">
+							<a href="${ctxName}/member/login">로그인</a>
+						</security:authorize>
+						
+							<%-- <c:if test="${not empty id}">
 								<a href="/member/logout">로그아웃</a>
 							</c:if>
+							
 							<c:if test="${id == null}">
 								<a href="/member/login">로그인</a>
-							</c:if>
+							</c:if> --%>
 						</li>
-						<li><a href="">회원가입</a></li>
+						<li><a href="${ctxName}/member/join">회원가입</a></li>
 					</ul>
 				</nav>
 

@@ -23,7 +23,7 @@ public class NoticeController {
 	//c# int? -->null이 가능한 타입 이 추가됨
 	//자바는 null이 가능하게 하려면 wrapper class 사용
 	
-	@RequestMapping("list")
+	@RequestMapping("list1")
 	public String list(Model model
 			, @RequestParam(name="p", defaultValue="1") Integer page
 			) throws ClassNotFoundException, SQLException {
@@ -32,7 +32,7 @@ public class NoticeController {
 		model.addAttribute("noticelist", list);
 		
 		//return "/notice/list";
-		return "list";//타일즈 사용해서 구현하기
+		return "notice.list1";//타일즈 사용해서 구현하기
 	
 	
 	

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newlecture.web.dao.MemberDao">
+
+	<select id="get" resultType="com.newlecture.web.entity.Member">
+		SELECT * from MEMBER WHERE id = #{id}
+	</select> 
+	
+	
+	<!-- 인터페이스에 있는 메소드명을 id에 넣어주기 -->
+ 	<insert id="insert" parameterType="com.newlecture.web.entity.Member">
+		INSERT INTO MEMBER(ID,PWD,NAME)
+		VALUES(#{id},#{pwd},#{name})
+	</insert>
+	
+	
+</mapper>

@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -103,15 +104,18 @@ public class NoticeController{
 	@GetMapping("reg")
 	//@RequestMapping("reg")
 	public String reg() {
-		return "admin/notice/reg";
+		//return "admin/notice/reg";
+		return "admin.notice.reg";
 	}
 	
+
 	//setter있는 애들만, 일치하는 애들만 가져올 수 있음
 	//POST요청
 	@PostMapping("reg")
 	//@RequestMapping("reg")
 	public String reg(Notice notice
 			, String category
+			, Principal principal
 			, MultipartFile file
 			, HttpServletRequest request) throws IOException, ClassNotFoundException, SQLException {
 		System.out.println("category:" + category);
@@ -185,8 +189,9 @@ public class NoticeController{
 	      fis.close();
 	      fos.close();	
 		
+	    //현재 로그인 한 사용자 계정을 얻는 방법
+	    notice.setWriterId(principal.getName());
 		noticeDao.insert(notice); //이렇게하면 우리가 정했던 title과 content만 가져오겠지
-		notice.setWriterId("newlec");
 		
 		
 		
