@@ -17,6 +17,7 @@
                </ol>
             </section>
 
+
             <section>
                <h1>공지사항 검색</h1>
                <form>
